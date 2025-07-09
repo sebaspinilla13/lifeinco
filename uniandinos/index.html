@@ -238,6 +238,29 @@
             color: #F8FAFC;
         }
         
+        /* New Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 1s ease-out forwards;
+        }
+        
+        .animate-fadeIn.delay-100 { animation-delay: 100ms; }
+        .animate-fadeIn.delay-200 { animation-delay: 200ms; }
+        .animate-fadeIn.delay-300 { animation-delay: 300ms; }
+        
         @media (max-width: 768px) {
             .logo-item {
                 min-width: 150px;
@@ -299,32 +322,112 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center">
-        <div class="container mx-auto px-4 md:px-6 py-20">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                    Haz que tu dinero trabaje para ti, <span class="text-primary animate-pulse-slow">no al revés</span>.
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                    Te ayudamos a asegurar y organizar tus finanzas, invertir con estrategia y construir un patrimonio sólido y protegido, con asesoría personalizada diseñada para profesionales como tú.
-                </p>
-                <a href="https://2ly.link/27OpJ" class="inline-block bg-primary hover:bg-blue-600 text-white text-lg font-semibold px-8 py-4 rounded-md transition transform hover:scale-105 glow">
-                    Agendar consultoría gratuita
+    <!-- Enhanced Hero Section with Video Background -->
+    <section class="relative min-h-screen flex items-center overflow-hidden group">
+        <div class="absolute inset-0 z-0">
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-90"
+                id="heroVideo"
+                poster="hero-poster.jpg">
+                <source src="hero-video.mp4" type="video/mp4">
+                <source src="hero-video.webm" type="video/webm">
+                Your browser does not support HTML5 video.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 via-dark/70 to-dark/90"></div>
+            
+            <!-- Video Controls -->
+            <button 
+                id="videoMuteBtn" 
+                class="absolute bottom-4 right-4 z-20 bg-dark/70 text-white p-3 rounded-full hover:bg-primary transition-all"
+                aria-label="Toggle sound">
+                <i class="fas fa-volume-mute text-xl"></i>
+            </button>
+        </div>
+        <div class="container mx-auto px-4 md:px-6 py-20 relative z-10">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fadeIn">
+                        <span class="text-primary">Transforma</span> tus finanzas con expertos que hablan tu idioma
+                    </h1>
+                    <p class="text-xl md:text-xl text-gray-300 mb-8 animate-fadeIn delay-100">
+                        Planes personalizados que se adaptan a tu realidad colombiana, con seguimiento continuo y herramientas digitales.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fadeIn delay-200">
+                        <a href="#cta" class="bg-primary hover:bg-blue-600 text-white font-semibold px-6 py-4 rounded-md transition-all hover:scale-105 glow flex items-center justify-center">
+                            Diagnóstico Gratuito <i class="fas fa-arrow-right ml-3"></i>
+                        </a>
+                        <a href="#video-modal" class="bg-transparent border-2 border-primary text-primary hover:bg-primary/10 font-semibold px-6 py-4 rounded-md transition-all hover:scale-105 flex items-center justify-center" data-modal-toggle="videoModal">
+                            <i class="fas fa-play-circle mr-3"></i> Ver Video
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4 animate-fadeIn delay-300">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-2">
+                                <img src="client-1.jpg" class="w-10 h-10 rounded-full border-2 border-dark" alt="Client">
+                                <img src="client-2.jpg" class="w-10 h-10 rounded-full border-2 border-dark" alt="Client">
+                                <img src="client-3.jpg" class="w-10 h-10 rounded-full border-2 border-dark" alt="Client">
+                            </div>
+                            <span class="ml-3 text-sm text-gray-300">+500 clientes satisfechos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image/Illustration -->
+                <div class="relative hidden md:block animate-fadeInRight">
+                    <div class="relative z-10 bg-dark/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-700/50 shadow-xl">
+                        <img src="hero-illustration.png" alt="Financial Planning" class="w-full h-auto rounded-lg">
+                        <div class="absolute -inset-4 -z-10 bg-primary/10 rounded-3xl blur-xl"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#problema" class="text-gray-300 hover:text-primary transition">
+                    <i class="fas fa-chevron-down text-2xl"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section - Updated Design -->
+    <!-- Trust/Social Proof Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-dark rounded-xl p-6 border border-gray-800">
+                        <h3 class="text-3xl font-bold text-primary mb-2">500+</h3>
+                        <p class="text-gray-300">profesionales satisfechos en Colombia</p>
+                    </div>
+                    <div class="bg-dark rounded-xl p-6 border border-gray-800">
+                        <h3 class="text-3xl font-bold text-primary mb-2">Certificados</h3>
+                        <p class="text-gray-300">Asesores regulados por la superintendencia financiera</p>
+                    </div>
+                    <div class="bg-dark rounded-xl p-6 border border-gray-800">
+                        <h3 class="text-3xl font-bold text-primary mb-2">9.5/10</h3>
+                        <p class="text-gray-300">Índice de satisfacción en seguimiento de planes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
     <section id="problema" class="py-20 section-gradient">
         <div class="container mx-auto px-4 md:px-6">
             <div class="max-w-4xl mx-auto text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    ¿Te sientes identificado con alguno de estos problemas?
+                    "A fin de mes siento que mi salario se esfuma, y cada vez es más difícil alcanzar mis metas"
                 </h2>
                 <p class="text-xl text-gray-300">
-                    Los profesionales como tú enfrentan desafíos comunes en la gestión de sus finanzas
+                    Comprar un hogar, ahorrar para mis hijos o invertir en mi crecimiento parecen sueños lejanos
                 </p>
             </div>
             
@@ -332,44 +435,33 @@
                 <!-- Problem Card 1 -->
                 <div class="problem-card p-6 text-center">
                     <div class="problem-icon mx-auto">
-                        <i class="fas fa-chart-pie text-primary text-2xl"></i>
+                        <i class="fas fa-wallet text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Falta de claridad</h3>
+                    <h3 class="text-xl font-bold mb-3">Tu ingreso no rinde</h3>
                     <p class="text-gray-300">
-                        Ingresos estables pero sin visión clara de cómo optimizar tus finanzas
+                        A pesar de tus esfuerzos, el dinero parece desaparecer cada mes
                     </p>
                 </div>
                 
                 <!-- Problem Card 2 -->
                 <div class="problem-card p-6 text-center">
                     <div class="problem-icon mx-auto">
-                        <i class="fas fa-piggy-bank text-primary text-2xl"></i>
+                        <i class="fas fa-heartbeat text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Ahorro ineficiente</h3>
+                    <h3 class="text-xl font-bold mb-3">Estrés y ansiedad</h3>
                     <p class="text-gray-300">
-                        Guardas dinero pero no sabes si estás aprovechando todo tu potencial
+                        La inestabilidad económica afecta tu salud y relaciones
                     </p>
                 </div>
                 
                 <!-- Problem Card 3 -->
                 <div class="problem-card p-6 text-center">
                     <div class="problem-icon mx-auto">
-                        <i class="fas fa-lock text-primary text-2xl"></i>
+                        <i class="fas fa-clipboard-list text-primary text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Complejidad</h3>
+                    <h3 class="text-xl font-bold mb-3">Soluciones genéricas</h3>
                     <p class="text-gray-300">
-                        Inversiones, pensiones y seguros parecen demasiado técnicos y confusos
-                    </p>
-                </div>
-                
-                <!-- Problem Card 4 -->
-                <div class="problem-card p-6 text-center">
-                    <div class="problem-icon mx-auto">
-                        <i class="fas fa-clock text-primary text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Falta de tiempo</h3>
-                    <p class="text-gray-300">
-                        Entre trabajo y familia, investigar opciones se vuelve otra carga más
+                        Cursos y plantillas que no se adaptan a tu realidad específica
                     </p>
                 </div>
             </div>
@@ -393,15 +485,67 @@
         <div class="container mx-auto px-4 md:px-6">
             <div class="max-w-4xl mx-auto text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    Un plan financiero personalizado. 
-                  <span class="text-primary typing-animation" id="typing-text">Claro, Estratégico, Real.</span>  Hecho para ti
+                    "Imagina contar con un aliado que conoce tu situación y diseña un plan financiero tan único como tú"
                 </h2>
                 <p class="text-xl text-gray-300">
-                    Diseñamos un proceso simple y profundo para acompañarte en tu crecimiento financiero.
+                    Conexión 1:1 con un asesor financiero certificado que crea un plan personalizado, claro y accionable
                 </p>
                 <p class="text-xl text-gray-300">
-                    Con nosotros obtienes claridad, estructura y guía continua. Sin letra pequeña, sin tecnicismos.
+                    Con seguimiento continuo vía nuestro asistente digital y reuniones periódicas
                 </p>
+            </div>
+            
+            <!-- 3-Step Process Section -->
+            <div class="max-w-6xl mx-auto mb-16">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                                <span class="text-primary font-bold text-xl">1</span>
+                            </div>
+                            <h3 class="text-xl font-semibold">Diagnóstico</h3>
+                        </div>
+                        <p class="text-gray-300 mb-3">
+                            <strong>Qué sucede:</strong> Videoasesoría 1:1 para mapear tu realidad y objetivos
+                        </p>
+                        <p class="text-primary">
+                            <strong>Resultado:</strong> Entendemos tus retos y definimos metas claras
+                        </p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                                <span class="text-primary font-bold text-xl">2</span>
+                            </div>
+                            <h3 class="text-xl font-semibold">Plan a tu medida</h3>
+                        </div>
+                        <p class="text-gray-300 mb-3">
+                            <strong>Qué sucede:</strong> Diseño de una estrategia práctica: ahorro, inversión y presupuesto
+                        </p>
+                        <p class="text-primary">
+                            <strong>Resultado:</strong> Un camino paso a paso, sencillo de ejecutar
+                        </p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="bg-gray-900 rounded-xl p-6 border border-gray-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary bg-opacity-20 p-3 rounded-full mr-4">
+                                <span class="text-primary font-bold text-xl">3</span>
+                            </div>
+                            <h3 class="text-xl font-semibold">Seguimiento</h3>
+                        </div>
+                        <p class="text-gray-300 mb-3">
+                            <strong>Qué sucede:</strong> Nuestro agente digital 24/7 + reuniones periódicas
+                        </p>
+                        <p class="text-primary">
+                            <strong>Resultado:</strong> Calma, acompañamiento y ajustes para mantener el rumbo
+                        </p>
+                    </div>
+                </div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -463,314 +607,19 @@
         </div>
     </section>
 
-    <!-- Authority Section -->
-    <section id="confianza" class="py-20 section-gradient">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    Estamos detrás de los números de quienes lideran.
-                </h2>
-                <p class="text-xl text-gray-300">
-                    Nuestro equipo ha trabajado con ejecutivos, emprendedores y profesionales de alto rendimiento en Colombia, ayudándolos a asegurar y organizar su dinero, tomar decisiones inteligentes y crecer con seguridad. Estas son algunas de las marcas en las que trabajan nuestros clientes:
-                </p>
-            </div>
-            
-            <!-- Logos Carousel -->
-            <div class="logo-carousel mb-16">
-                <div class="logo-track animate-slide-infinite">
-                    <div class="logo-slide">
-                        <div class="logo-item">
-                            <span class="logo-text">Bancolombia</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">Davivienda</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">McKinsey</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">Rappi</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">Bancolombia</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">Davivienda</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">McKinsey</span>
-                        </div>
-                        <div class="logo-item">
-                            <span class="logo-text">Rappi</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-<!-- Team Section -->
-            <div class="max-w-6xl mx-auto mb-16">
-                <h3 class="text-2xl md:text-3xl font-bold mb-12 text-center">Conoce a nuestro equipo de expertos</h3>
-
-                <p class="text-xl mb-5 text-center">
-                   Nuestros consultores tienen experiencia en banca privada, planificación patrimonial, seguros y gestión de inversiones en Colombia y el exterior.
-                </p>
-                
-                <!-- Team Members Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Team Member 1 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="ingrid soto.jpeg" 
-                                 alt="Ingrid Soto" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Ingrid Soto</h4>
-                        <p class="text-primary font-medium mb-3">Consultora Financiera Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- Team Member 2 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="juanpa-foto.jpeg" 
-                                 alt="Juan Pablo Bernal" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Juan Pablo Bernal | MBA</h4>
-                        <p class="text-primary font-medium mb-3">Fundador & Consultor Financiero Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- Team Member 3 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="Felipe pitalua.JPG" 
-                                 alt="Felipe Pitalua" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Felipe Pitalua</h4>
-                        <p class="text-primary font-medium mb-3">Consultor Financiero Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- Team Member 4 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="Lida Gutiérrez.jpeg" 
-                                 alt="Lida Gutiérrez" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Lida Gutiérrez</h4>
-                        <p class="text-primary font-medium mb-3">Consultora Financiera Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- Team Member 5 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="Johanna Jiménez.jpeg" 
-                                 alt="Johanna Jiménez" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Johanna Jiménez</h4>
-                        <p class="text-primary font-medium mb-3">Consultora Financiera Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <!-- Team Member 6 -->
-                    <div class="bg-dark rounded-xl p-6 border border-gray-800 text-center hover:transform hover:scale-105 transition-all duration-300">
-                        <div class="flex justify-center mb-4">
-                            <img src="Jose Velez.jpeg" 
-                                 alt="Jose Fernando Velez" 
-                                 class="w-24 h-24 rounded-full border-4 border-primary object-cover">
-                        </div>
-                        <h4 class="text-xl font-bold mb-1">Jose Fernando Velez</h4>
-                        <p class="text-primary font-medium mb-3">Consultor Financiero Senior</p>
-                        <p class="text-gray-300 mb-4">
-                            Protección Patrimonial, Seguros de Vida e Inversión Estratégica
-                        </p>
-                        <div class="text-center mt-6">
-                            <a href="#cta" class="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300">
-                                Reserva tu espacio hoy <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        <a href="#" class="inline-block bg-gray-800 hover:bg-gray-700 text-white p-2 mt-6 rounded-full transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="max-w-3xl mx-auto bg-dark rounded-xl p-8 md:p-10 border border-gray-800">
-                
-                <p class="text-xl font-semibold text-primary">
-                    Sabemos que hablar de dinero requiere más que conocimiento: requiere confianza, confidencialidad y respeto.
-                </p>
-                <p class="text-xl mt-6">
-                    Por eso no ofrecemos productos. Te ofrecemos criterio, acompañamiento y visión.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonios" class="py-20 bg-dark">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    Lo que dicen quienes ya confiaron en nosotros:
-                </h2>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="testimonial-slider flex overflow-x-auto space-x-6 pb-6 scrollbar-hide">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full md:w-2/3 bg-gray-900 rounded-xl p-8 border border-gray-800">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Camilo G.</h4>
-                                <p class="text-gray-400 text-sm">Ingeniero de software</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 italic mb-4">
-                            "Tenía buenos ingresos, pero no sabía cómo estructurar mi futuro financiero. Hoy tengo un plan claro, invierto con confianza y me siento tranquilo."
-                        </p>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full md:w-2/3 bg-gray-900 rounded-xl p-8 border border-gray-800">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Laura C.</h4>
-                                <p class="text-gray-400 text-sm">Gerente de Marketing</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 italic mb-4">
-                            "Siempre pensé que invertir era para gente con millones. Con esta asesoría entendí cómo empezar, incluso con metas de mediano plazo."
-                        </p>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-slide flex-shrink-0 w-full md:w-2/3 bg-gray-900 rounded-xl p-8 border border-gray-800">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Juan F.</h4>
-                                <p class="text-gray-400 text-sm">Consultor estratégico</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 italic mb-4">
-                            "El diagnóstico me ayudó a ver que no tenía que ser experto para organizarme. El asesor fue claro, respetuoso y me dio herramientas 
-                          
-                          es."
-                        </p>
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex justify-center mt-6 space-x-2">
-                    <button class="w-3 h-3 rounded-full bg-gray-700 testimonial-dot" data-index="0"></button>
-                    <button class="w-3 h-3 rounded-full bg-gray-700 testimonial-dot" data-index="1"></button>
-                    <button class="w-3 h-3 rounded-full bg-gray-700 testimonial-dot" data-index="2"></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Final CTA Section -->
     <section id="cta" class="py-20 hero-gradient">
         <div class="container mx-auto px-4 md:px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                    La mejor decisión financiera que puedes tomar hoy: <span class="text-primary">empezar con claridad</span>.
+                    No recorras este camino solo. Da el primer paso hoy mismo
                 </h2>
                 <p class="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                    Agenda tu consultoría gratuita. No vendemos productos, no forzamos decisiones.
-                </p>
-                <p class="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
-                    Solo te damos la información, el criterio y la estrategia para que tú tomes el control.
+                    Comienza tu diagnóstico gratuito para transformar tu relación con el dinero
                 </p>
                 
-                <a href="https://2ly.link/27OpT" class="inline-block bg-primary hover:bg-blue-600 text-white text-lg font-semibold px-10 py-5 rounded-md transition transform hover:scale-105 glow mb-4">
-                    Agendar consultoría gratuita
+                <a href="https://chatgpt.com/c/686ea376-f6dc-8003-888a-0814ebedac73" class="inline-block bg-primary hover:bg-blue-600 text-white text-lg font-semibold px-10 py-5 rounded-md transition transform hover:scale-105 glow mb-4">
+                    ¡Quiero mi diagnóstico! <i class="fas fa-arrow-right ml-2"></i>
                 </a>
                 
                 <p class="text-sm text-gray-400">
@@ -785,12 +634,11 @@
         <div class="container mx-auto px-4 md:px-6">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <div class="flex justify-start items-center">
-                      <a href="/" class="flex items-center space-x-3">
-                        <img src="logo LifeInCo Blanco.svg" alt="Logo de LifeInCo" class="h-10 w-auto">
-                      </a>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-chart-line text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">LifeInCo</span>
                     </div>
-                    <p class="text-gray-400 pl-1 md:pl-3">
+                    <p class="text-gray-400">
                         Asesoría financiera personalizada para profesionales que buscan seguridad, claridad y crecimiento patrimonial.
                     </p>
                 </div>
@@ -836,11 +684,11 @@
                     <ul class="space-y-2">
                         <li class="flex items-center">
                             <i class="fas fa-envelope text-primary mr-2"></i>
-                            <span>jp.bernal@lifeinco.com.co</span>
+                            <span>hola@lifeinco.com</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-phone text-primary mr-2"></i>
-                            <span>+57 318 789 2949</span>
+                            <span>+57 123 456 7890</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-map-marker-alt text-primary mr-2"></i>
@@ -869,7 +717,44 @@
         </div>
     </footer>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/90 p-4">
+        <div class="relative w-full max-w-4xl">
+            <button class="absolute -top-12 right-0 text-white hover:text-primary text-3xl" data-modal-toggle="videoModal">
+                &times;
+            </button>
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe id="modalVideo" class="w-full h-[300px] sm:h-[400px] md:h-[500px]" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Video Mute Toggle
+        const video = document.getElementById('heroVideo');
+        const muteBtn = document.getElementById('videoMuteBtn');
+        
+        muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            muteBtn.innerHTML = video.muted 
+                ? '<i class="fas fa-volume-mute text-xl"></i>' 
+                : '<i class="fas fa-volume-up text-xl"></i>';
+        });
+
+        // Video Modal
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        
+        document.querySelectorAll('[data-modal-toggle="videoModal"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                videoModal.classList.toggle('hidden');
+                if (!videoModal.classList.contains('hidden')) {
+                    modalVideo.src = "https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1";
+                } else {
+                    modalVideo.src = "";
+                }
+            });
+        });
         // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
