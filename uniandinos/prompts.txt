@@ -1,3 +1,0 @@
-i want to convert the section: <!-- Team Section --> in two carrousels 
-add add each member of: <!-- Team Section --> a bottom for CTA: Agendar consultoria 
-add add each member of: <!-- Team Section --> a bottom for CTA: Agendar consultoria 
